@@ -6,6 +6,7 @@ class UserFirebase {
 
   Future<User> addUser(Map<String, dynamic> u) async {
     try {
+
       final docRef = await db.collection("Users").add(u);
       return User.fromJson(u, docRef.id);
     } catch (e) {
@@ -30,21 +31,23 @@ class UserFirebase {
     }
   }
 
-  Future<DocumentReference?> updateUser(Map<String, dynamic> u) async {
+  Future<void> updateUser(String id, Map<String, dynamic> u) async {
     try {
-      final docRef = await db.collection("Users").add(u);
-      return docRef;
+      final docRef = await db.collection("Users").doc(id).set(u);
+
     } catch (e) {
       print("Lỗi khi thêm user: $e");
-      return null;
+      throw(e);
     }
   }
-  Future<DocumentReference?> deleteUser(Map<String, dynamic> u) async {
+  Future<void> deleteUser(String id) async {
     try {
-      final docRef = await db.collection("Users").add(u);
-      return docRef;
+      await db.collection("Users").doc(id).delete().then(
+            (doc) => print("Document deleted"),
+        onError: (e) => print("Error updating document $e"),
+      );
     } catch (e) {
-      print("Lỗi khi thêm user: $e");
+      print("Lỗi khi xóa user: $e");
       return null;
     }
   }

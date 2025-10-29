@@ -13,6 +13,11 @@ dependencies:
   provider: ^6.1.5
   cloud_firestore: ^6.0.3
   firebase_core: ^4.2.0
+  cloudinary_flutter: ^1.0.0
+  cloudinary_url_gen: ^1.0.0
+  cloudinary_api: ^1.1.1
+  file_picker: ^10.3.3
+
 
 dev_dependencies:
   flutter_test:

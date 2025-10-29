@@ -1,12 +1,16 @@
+import 'package:cloudinary_flutter/image/cld_image.dart';
+import 'package:cloudinary_url_gen/transformation/resize/resize.dart';
+import 'package:cloudinary_url_gen/transformation/transformation.dart';
 import 'package:flutter/material.dart';
 import 'package:giuaky/data/User.dart';
+import 'package:giuaky/presentation/screens/UpdateUserScreen.dart';
+import 'package:provider/provider.dart';
 
 class UserCardWidget extends StatelessWidget {
   final User user;
   final VoidCallback deleteUser;
-  final VoidCallback updateUser;
 
-  const UserCardWidget({super.key, required this.user, required this.deleteUser, required this.updateUser});
+  const UserCardWidget({super.key, required this.user, required this.deleteUser});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,16 @@ class UserCardWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    IconButton.outlined(onPressed: updateUser, icon: Icon(Icons.edit)),
+                    IconButton.outlined(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UpdateUserScreen(viewModel: context.read(), user: user), // Trang bạn muốn chuyển sang
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.edit)),
                     IconButton.outlined(onPressed: deleteUser, icon: Icon(Icons.delete)),
 
                   ],

@@ -47,8 +47,7 @@ class _UserListScreenState extends State<UserListScreen> {
               final user = widget.viewModel.userList[index];
               return UserCardWidget(
                 user: user,
-                deleteUser: () => widget.viewModel.addUser(user.toJson()),
-                updateUser: () => widget.viewModel.addUser(user.toJson()),
+                deleteUser: () => widget.viewModel.deleteUser(user.id),
               );
             },
           );
