@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:giuaky/application/UserViewModel.dart';
+import 'package:giuaky/presentation/screens/UserListScreen.dart';
+import 'data/UserFirebase.dart';
 import 'firebase_options.dart';
 
 import 'package:flutter/material.dart';
@@ -9,7 +12,18 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        Provider(create: (context) => UserFirebase()),
+        ChangeNotifierProvider(
+          create: (context) => UserViewModel(
+          userFirebase: context.read(),
+        ))
+  ],
+     child: const MyApp()
+    ),
+  );
 }
 
 
@@ -58,15 +72,9 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: Row(
+        child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {
-                appState.addSample();
-              },
-              child: Text('Add'),
-            ),
-            Text(appState.current),
+            Expanded(child: UserListScreen(viewModel: context.read())),
           ],
         ),
       ),
