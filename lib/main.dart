@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:giuaky/application/UserViewModel.dart';
+import 'package:giuaky/authentication/AuthGate.dart';
 import 'package:giuaky/presentation/screens/UserListScreen.dart';
 import 'data/UserFirebase.dart';
 import 'firebase_options.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
-        home: MyHomePage(),
+        home: AuthGate(),//MyHomePage()
       ),
     );
   }
@@ -63,6 +64,10 @@ class MyAppState extends ChangeNotifier {
       print('🔥 Lỗi khi thêm user: $error');
     });
   }
+  MyAppState() {
+
+  }
+
 
 }
 

@@ -1,6 +1,4 @@
-import 'package:cloudinary_flutter/image/cld_image.dart';
-import 'package:cloudinary_url_gen/transformation/resize/resize.dart';
-import 'package:cloudinary_url_gen/transformation/transformation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:giuaky/data/User.dart';
 import 'package:giuaky/presentation/screens/UpdateUserScreen.dart';

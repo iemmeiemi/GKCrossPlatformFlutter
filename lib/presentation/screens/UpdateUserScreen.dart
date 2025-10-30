@@ -32,7 +32,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen> {
     _usernameController = TextEditingController(text: widget.user.username);
     _emailController = TextEditingController(text: widget.user.email);
     _passwordController = TextEditingController(text: widget.user.password);
-    _fileUrl = widget.user.image ?? "";
+    _fileUrl = widget.user.image;
   }
 
   @override

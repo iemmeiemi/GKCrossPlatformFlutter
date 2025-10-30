@@ -31,9 +31,10 @@ class UserFirebase {
     }
   }
 
+
   Future<void> updateUser(String id, Map<String, dynamic> u) async {
     try {
-      final docRef = await db.collection("Users").doc(id).set(u);
+      await db.collection("Users").doc(id).set(u);
 
     } catch (e) {
       print("Lỗi khi thêm user: $e");
